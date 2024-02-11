@@ -1,5 +1,5 @@
-import axios from 'axios';
+import axios from "axios";
 
-axios.defaults.baseURL = 'https://moments-db-b9026c5319dc.herokuapp.com/';
-axios.defaults.headers.post['Content-Type'] = 'multiform/form-data';
+axios.defaults.baseURL = "https://drf-api-rec.herokuapp.com/";
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
