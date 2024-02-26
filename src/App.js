@@ -9,6 +9,12 @@ import PostCreateForm from './pages/posts/PostCreateForm';
 import PostPage from './pages/posts/PostPage';
 import PostsPage from './pages/posts/PostsPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
+import PostEditForm from './pages/posts/PostEditForm';
+import ProfilePage from './pages/profiles/ProfilePage';
+import UsernameForm from './pages/profiles/UsernameForm';
+import UserpasswordForm from './pages/profiles/UserpasswordForm';
+import ProfileEditForm from './pages/profiles/ProfileEditForm';
+
 
 function App() {
   const currentUser = useCurrentUser();
@@ -26,11 +32,27 @@ function App() {
                <Route path = "/liked" element={<PostsPage message = "No results found. Adjust the search keyword or like a post "
               filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}/>} />
 
+
               <Route path = "/signin" element={<SignInForm/>}/>
               <Route path = "/signup" element={<SignUpForm/>}/>
               <Route path = "/posts/create" element={<PostCreateForm/>}/>
               <Route path = "/posts/:id" element={<PostPage/>}/>
+              <Route path = "/posts/:id/edit" element={<PostEditForm/>}/>
+              <Route path = "/profiles/:id" element={<ProfilePage/>}/>
+
+              <Route path = 
+              "/profiles/:id/edit/username"
+              element = {<UsernameForm/>}/>
+
+              <Route path = 
+              "/profiles/:id/edit/password"
+              element = {<UserpasswordForm/>}/>
               <Route path="*" element={<p>Page not found!</p>} />
+
+              <Route path = 
+              "/profiles/:id/edit/edit"
+              element = {<ProfileEditForm/>}/>
+              
             </Routes>
           </Container>
         </div>

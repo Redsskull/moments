@@ -3,8 +3,9 @@ import styles from './Post.module.css'
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axiosRes from 'axios';
+import { MoreDropdown } from '../../components/MoreDropdown';
 
 
 const Post = (props) => {
@@ -26,6 +27,20 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/posts/${id}/edit`);
+  }
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}/`);
+      navigate(-1); 
+      }
+     catch (err) {
+      console.error(err);
+    }};
 
   const handleLike = async () => {
     try {
@@ -69,7 +84,10 @@ const Post = (props) => {
           </Link>
           <div className='d-flex align-items-center'>
             <span>{updated_at}</span>
-            {is_owner && postPage && "..." }
+            {is_owner && postPage && <MoreDropdown 
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            /> }
           </div>
         </Media>
       </Card.Body>

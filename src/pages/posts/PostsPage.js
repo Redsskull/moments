@@ -13,6 +13,7 @@ import Asset from "../../components/Asset";
 import Post from "./Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function PostsPage({message, filter = ""}) {
     const [posts, setPosts] = useState({results: []});
@@ -41,7 +42,7 @@ function PostsPage({message, filter = ""}) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles mobile</p>
+        <PopularProfiles mobile/>
         < i className = {`fas fa-search $ {styles.SearchIcon}`} /> 
         <Form className={styles.SearchBar}
         onSubmit = {(e) => e.preventDefault()} >
